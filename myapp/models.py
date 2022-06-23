@@ -41,13 +41,12 @@ class Order(models.Model):
     def total(self):
         return self.order_amount * self.product.price
     
-class Profile(models.Model):
-    name = models.CharField(max_length=100, null=True)
-    profile_pic = CloudinaryField('image', null=True)
-    bio = models.TextField(null=True)
-    email = models.EmailField(null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class User_Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    image = CloudinaryField('image', null=True)
+    id_number = models.IntegerField(blank=True,null=True)
+    user_name = models.CharField(max_length=50)
+    email = models.EmailField()
 
     def __str__(self):
-        return self.name
-
+        return f'{self.user.username} profile'

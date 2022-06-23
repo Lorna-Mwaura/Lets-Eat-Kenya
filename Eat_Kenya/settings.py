@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'cloudinary'
+    'cloudinary',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+LOGIN_REDIRECT_URL = 'welcome'
+LOGIN_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -134,3 +137,6 @@ cloudinary.config(
     api_key="188534173523435",
     api_secret="YQghV-b5GPMKpOAwMTZvxb4js5M"
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
