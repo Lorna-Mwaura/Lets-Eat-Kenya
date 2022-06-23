@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import *
 from .models import *
 
 # Create your views here.
 def welcome(request):
-    return render(request, 'index.html')
+    resturant = Resturant.objects.all()
+    return render(request, 'index.html', {"resturant":resturant})
 
 def register(request):
     if request.method == 'POST':
@@ -50,3 +51,24 @@ def profile(request):
     }
 
     return render(request, 'users/profile.html', context)
+
+@login_required
+def upload(request):
+    '''
+    function to upload restaurant for display
+    '''
+    current_user = request.user
+    if request.method == "POST":
+        form = uploadform(request.POST,request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+            return redirect('welcome')
+    else:
+        form = uploadform()
+    context = {
+        "form":form
+    }
+
+    return render(request,"resturant/upload.html",context)
