@@ -18,7 +18,7 @@ class Product(models.Model):
     def delete_product(self):
         self.delete()
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.product_name
 
 class Order(models.Model):
@@ -34,10 +34,20 @@ class Order(models.Model):
     time_ordered = models.TimeField(auto_now_add=True, null=True, blank=True)
     status = models.CharField(choices=STATUS, max_length=200, null=True, default='Pending')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.product.product_name
 
     @property
     def total(self):
         return self.order_amount * self.product.price
+    
+class Profile(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    profile_pic = CloudinaryField('image', null=True)
+    bio = models.TextField(null=True)
+    email = models.EmailField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
