@@ -1,0 +1,9 @@
+.cover{
+    background: url(../images/Eat-Kenya.jpeg);
+    height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1px;
+    margin: 10px;
+
+}

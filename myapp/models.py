@@ -50,3 +50,13 @@ class User_Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} profile'
+
+class Resturant(models.Model):
+    name = models.CharField(blank=False,null=True, max_length=100)
+    Location = models.CharField(blank=False, null=True, max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = models.CharField(max_length =80)
+    image = CloudinaryField('images')
+
+    def __str__(self):
+        return self.name
