@@ -1,0 +1,1 @@
+web: gunicorn Eat-Kenya.wsgi --log-file-
