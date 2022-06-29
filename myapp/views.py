@@ -72,7 +72,8 @@ def upload(request):
     }
 
     return render(request,"resturant/upload.html",context)
-
+    
+@login_required
 def default_map(request):
     mapbox_access_token = 'pk.my_mapbox_access_token'
     return render(request, 'default.html', 
